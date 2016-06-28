@@ -5,7 +5,6 @@ import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -16,9 +15,9 @@ import okhttp3.OkHttpClient;
 /**
  * Created by star on 2016/5/28 0028.
  */
-public class DowloadService extends Service implements downLoadListener {
+public class DowloadService extends Service implements DownLoadListener {
 
-    private OkhttpDowloader dowloader;
+    private OkHttpDowloader dowloader;
     private static final int NOTIFICATION_ID = 0x123;
     private Notification notification = null;
     private NotificationManager manager = null;
@@ -43,8 +42,10 @@ public class DowloadService extends Service implements downLoadListener {
     public int onStartCommand(Intent intent, int flags, int startId) {
         if (intent != null) {
             downLoadInfo = intent.getParcelableExtra(DownLoadInfo.DOWNLOAD_INFO);
-            dowloader = new OkhttpDowloader(downLoadInfo.downloadUrl,
-                    new OkHttpClient().newBuilder().build(), downLoadInfo.downloadPath);
+         //   dowloader = new OkHttpDowloader(downLoadInfo.downloadUrl,
+          //          new OkHttpClient().newBuilder().build(), downLoadInfo.downloadPath);
+            dowloader = new OkHttpDowloader(downLoadInfo.downloadUrl,
+                    RyUpdateHelper.getOkHttpClient(), downLoadInfo.downloadPath);
             dowloader.setDownloadListener(this);
             dowloader.startDownload();
         }

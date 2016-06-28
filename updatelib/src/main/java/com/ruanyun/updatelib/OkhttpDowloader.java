@@ -15,16 +15,16 @@ import okio.Okio;
 /**
  * Created by star on 2016/5/28 0028.
  */
-public class OkhttpDowloader implements Runnable {
+public class OkHttpDowloader implements Runnable {
     private OkHttpClient okHttpClient;
     private String downLoadUrl = "";
     private String donwLoadPath = "";
-    private downLoadListener downloadListener;
+    private DownLoadListener downloadListener;
     private File downFile;
     private long toolSize;
     private long completedSize;
 
-    public OkhttpDowloader(String downLoadUrl, OkHttpClient okHttpClient, String donwLoadPath) {
+    public OkHttpDowloader(String downLoadUrl, OkHttpClient okHttpClient, String donwLoadPath) {
         this.downLoadUrl = downLoadUrl;
         this.okHttpClient = okHttpClient;
         this.donwLoadPath = donwLoadPath;
@@ -75,7 +75,7 @@ public class OkhttpDowloader implements Runnable {
         }
     }
 
-    public void setDownloadListener(downLoadListener downloadListener) {
+    public void setDownloadListener(DownLoadListener downloadListener) {
         this.downloadListener = downloadListener;
     }
 
